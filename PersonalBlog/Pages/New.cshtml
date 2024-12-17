@@ -1,0 +1,16 @@
+﻿@page
+@model PersonalBlog.Pages.NewModel
+@{
+	ViewData["Title"] = "New Article";
+}
+<h1>New Article</h1>
+
+<form method="post" asp-page-handler="Create">
+	<div class="mb-3">
+		<input type="text" class="form-control" id="title" asp-for="Article.Title" placeholder="Article Title" required />
+	</div>
+	<div class="mb-3">
+		<textarea class="form-control" asp-for="Article.Content" rows="15" required  placeholder="Content"></textarea>
+	</div>
+	<button type="submit" class="btn btn-primary">Publish</button>
+</form>

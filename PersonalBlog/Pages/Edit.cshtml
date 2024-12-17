@@ -1,0 +1,18 @@
+﻿@page "{id:int}"
+@model PersonalBlog.Pages.EditModel
+@{
+	ViewData["Title"] = "Update Article";
+}
+
+
+<h1>Update Article</h1>
+
+<form method="post" asp-page-handler="Update">
+	<div class="mb-3">
+		<input type="text" class="form-control" id="title" asp-for="Article.Title" placeholder=@Model.Article.Title required/>
+	</div>
+	<div class="mb-3">
+		<textarea class="form-control" asp-for="Article.Content" rows="15" required>@Model.Article.Content</textarea>
+	</div>
+	<button type="submit" class="btn btn-success">Update</button>
+</form>

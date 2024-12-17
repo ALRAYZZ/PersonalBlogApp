@@ -1,0 +1,64 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Personal Blog";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Personal Blog</h1>
+    <p>Explore the latest articles below:</p>
+	
+</div>
+@if (Model.Articles == null || !Model.Articles.Any())
+{
+    <div class="text-center">
+		<p>No articles found at the moment. Please check back later.</p>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body d-flex justify-content-between">
+                        <div class="card-body">
+                            <h5 class="card-title">@article.Title</h5>
+						    <p class="card-text">@article.Content</p>
+						    <a href="/article/@article.Id" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="text-muted">
+							@article.Date.ToString("MMMM dd, yyyy")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="loginModalLabel">Login</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+                <form method="post" asp-page-handler="Login" id="loginForm">
+                    <div class="mb-3">
+						<label for="username" class="form-label">Username</label>
+						<input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+					<button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
